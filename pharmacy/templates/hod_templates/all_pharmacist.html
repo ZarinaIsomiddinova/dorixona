@@ -1,0 +1,98 @@
+{% extends 'hod_templates/base_template.html'%} {% block page_title %}
+<h5>Barcha bemorlar</h5>
+
+{% endblock page_title %} {% block main_content %}
+<section class="content">
+    {% if messages %}
+    <div class="form-group">
+        <div class="col-12">
+            {% for message in messages %} {% if message.tags == "error" %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% elif message.tags == "success" %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %} {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="card card-primar sc">
+                <div class="card-header">
+                    <span>Farmatsevt tafsilotlari</span>
+                    <div class="card-tools d-flex">
+
+
+                        <a class="btn btn-sm btn-info mr-2" href="{% url 'manage_pharmacist'  %}" role="button">+ Farmatsevt Qo'shish</a>
+
+                    </div>
+                </div>
+                <table class="table table-bordered table-hover dataTable" id=plist>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Profil</th>
+                            <th>UserName</th>
+                            <th>Ism</th>
+                            <th>Familya</th>
+                            <th>Email</th>
+
+                            <th>Tel</th>
+
+                            <th>Manzil</th>
+                            <th>Oxirgi Kirish</th>
+                            <th>Harakat</th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for staff in staffs %}
+
+                        <tr class="hov">
+                            <td>{{staff.admin.id}}</td>
+                            <td> <img src="{{staff.profile_pic.url}}" class="" width="35" height="35" alt=""></td>
+
+                            <td>{{staff.admin.username}}</td>
+                            <td>{{staff.admin.first_name}}</td>
+                            <td>{{staff.admin.last_name}}</td>
+
+                            <td>{{staff.admin.email}}</td>
+                            <td>{{staff.mobile}}</td>
+
+                            <td>{{staff.address}}</td>
+                            <td>{{staff.admin.last_login}}</td>
+
+                            <td><a href="{% url 'edit_pharmacist' staff.admin.id %}" class="btn btn-sm btn-success">Taxrirlash</a>
+                                <a href="{% url 'delete_pharmacist' staff.id %}" class="btn btn-sm btn-danger">O'chirish</a>
+                            </td>
+
+                            <!-- <td>{{patient.dob|date:"F   d, Y"}}</td>
+                                    <td>{{patient.mobile}}</td> -->
+                            <!-- <td>{{patient.date_admitted}}</td> -->
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

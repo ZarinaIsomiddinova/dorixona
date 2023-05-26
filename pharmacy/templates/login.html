@@ -1,0 +1,248 @@
+{% extends 'base.html'%}
+{% block page_title %}
+<h5>All patients</h5>
+
+{% endblock page_title %}
+{% block main_content %}
+{% load static %}
+
+   <html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/jquery.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/fontawesome/css/all.min.css' %}">
+
+
+	
+	<style>
+/* Mobile devices */
+@media (max-width: 576px) {
+  .row.loop {
+    flex-direction: column;
+    align-items: center;
+  }
+  .col-md-5 {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+  .card {
+    padding: 10px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  img {
+    width: 100px;
+    height: 90px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 576px) and (max-width: 768px) {
+  .col-md-5 {
+    width: 70%;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 32px;
+  }
+  img {
+    width: 120px;
+    height: 110px;
+  }
+}
+
+/* Small desktops */
+@media (min-width: 768px) and (max-width: 992px) {
+  .container {
+    max-width: 720px;
+  }
+  .col-md-5 {
+    width: 45%;
+    margin-bottom: 0;
+  }
+  img {
+    width: 140px;
+    height: 130px;
+  }
+}
+
+/* Large desktops */
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+  .col-md-5 {
+    width: 40%;
+    margin-bottom: 0;
+  }
+  img {
+    width: 150px;
+    height: 140px;
+  }
+}
+
+.form-control {
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 0;
+  padding: 12px 20px;
+  margin: 8px 0;
+  width: 100%;
+  font-size: 18px;
+}
+
+.btn-primary {
+  background-color: #1c7cd6;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  padding: 12px 20px;
+  margin: 8px 0;
+  width: 100%;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #1769aa;
+}
+
+.text-muted {
+  font-size: 18px;
+}
+
+a {
+  color: #1c7cd6;
+}
+
+a:hover {
+  color: #1769aa;
+}
+
+.custom-control-label::before {
+  background-color: #1c7cd6;
+  border-color: #1c7cd6;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+  background-color: #1769aa;
+  border-color: #1769aa;
+}
+
+.alert {
+  margin-top: 20px;
+  position: relative;
+}
+
+.alert .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  color: inherit;
+  transition: transform 0.3s;
+}
+
+.alert .close:hover {
+  color: inherit;
+  transform: rotate(180deg);
+}
+
+.start-icon {
+  margin-right: 10px;
+  font-size: 24px;
+}
+
+.fa-times {
+  color: #f44336;
+}
+
+.fa-check-circle {
+  color: #4caf50;
+}
+
+
+	</style>
+
+</head>
+<body>
+	 <div class="more p mt-3">
+
+		 <div class="row  loop">
+
+				<div class="col-md-5   container ">
+					<div class="card justify-content-center py-4 bg-light">
+							<div class="" style="padding:10px">
+									<div class="text-center">
+
+											<h3 class="mb-4 fw-300 text-dark">Onlayn Dorixona Kirish</h3>
+									</div>
+
+								  <div>
+									{% if messages %}
+									<div class="form-group">
+										<div class="col-12">
+											{% for message in messages %} {% if message.tags == "error" %}
+											<div class="col-sm-12 ">
+												<div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1 " role="alert" data-brk-library="component__alert">
+													<button type="button" class="close font__size-18" data-dismiss="alert"> <span aria-hidden="true">
+												<i class="fa fa-times danger "></i>
+												</span> <span class="sr-only">Close</span> </button> <i class="start-icon far fa-times-circle faa-pulse animated"></i> <strong class="font__weight-semibold">Xatolik!</strong> {{message}} </div>
+											</div> {% elif message.tags == "success" %}
+											<div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show mt-1">
+												<button type="button" class="close font__size-18" data-dismiss="alert"> <span aria-hidden="true">
+											 <i class="fa fa-times greencross"></i>
+											 </a></span> <span class="sr-only">Close</span> </button> <i class="start-icon far fa-check-circle faa-tada animated"></i> <strong class="font__weight-semibold">Ajoyib!</strong> {{message}} </div> {% endif %} {% endfor %} </div>
+									</div> {% endif %}
+									<form class="input-light" method="POST">
+											{% csrf_token %}
+									  <div class=" ">
+								   <div class="form-group ">
+									   <label for=""class="text-muted">Username</label>
+										<div class="input-group ">
+												<div class="input-group-prepend">
+												  <span class="input-group-text"><i class="fas fa-user"></i></span>
+												</div>
+												<input type="text" class="form-control" name="username" placeholder="Username" style="width:90%">
+											  </div>
+								   </div>
+									 
+									<div class="form-group">
+										<label for="" class="text-muted">Parol</label>
+											<div class="input-group mb-5">
+													<div class="input-group-prepend">
+													  <span class="input-group-text"><i class="fas fa-lock"></i></span>
+													</div>
+													<input type="password" class="form-control" name="password" placeholder="Parol">
+												  </div>
+									</div>
+									  </div>
+									  <div class="form-group ">
+										<div class="custom-control custom-checkbox">
+										 
+										<a class="text-secondary " href="{% url 'reset_password' %}">Parolni unutdingizmi?</a>
+									  </div>
+									  <div class="form-group">
+										<button class="btn btn-primary" type="submit">Kirish</button>
+										
+									  </div>
+									</form>
+								  </div>
+								</div>
+					</div>
+
+					  </div>
+
+		 </div>
+	 </div>
+							
+	
+</body>
+</html>
+
+
+
+{% endblock main_content %}

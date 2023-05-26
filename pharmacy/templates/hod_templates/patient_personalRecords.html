@@ -1,0 +1,106 @@
+{% extends 'hod_templates/base_template.html'%} {% block main_content %}
+<div class="content">
+    <div class="row pt">
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Bemor Surati
+                </div>
+                <div class="card-body d-flex justify-content-center">
+                    <img src="{{patient.profile_pic.url}}" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Bemor Haqida Malumot
+                </div>
+                <div class="card-body">
+                    <tbody>
+                        <tr>
+                            <td>To'liq Ism: {{patient.patientname}}</td>
+                            <br>
+                            <td>Email: {{ patient.admin.email }}</td>
+                            <br>
+                            <td>Yoshi: {{ patient.age }}</td>
+                            <br>
+                            <td>Jins: {{ patient.gender }}</td>
+                            <br>
+                            <td>Manzil: {{ patient.adresss }}</td>
+                            <br>
+                            <td>Tel: {{ patient.mobile }}</td>
+
+                        </tr>
+                    </tbody>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Bemorning tibbiy ma'lumotlari
+                </div>
+                <div class="card-body">
+                    <h6>Qoʻshildi: </h6>
+                    <h6>Oxirgi kirish: </h6>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> O'qituvchilarning shaxsiy ma'lumotlari
+                </div>
+                <div class="card-body">
+
+                    <table class="table table-bordered table-hover dataTable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th></th>
+                                <th>UserName</th>
+                                <th>Ism</th>
+                                <th>Familya</th>
+                                <th>Jins</th>
+                                <th>Email</th>
+
+                                <th>Tel</th>
+
+                                <th class="text-center">Harakat</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for stock in stocks %}
+                            <tr>
+                                <td>{{stock.dispense_quantity}}</td>
+                                <td>{{stock.patient_id.first_name}}</td>
+                                <td>{{stock.sto}}</td>
+                                <td>{{stock.quantity}}</td>
+                                <td>{{patient.admin.email}}</td>
+                                <td>{{stock.patient_id.first_name}}</td>
+                                <td>
+
+
+
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}
